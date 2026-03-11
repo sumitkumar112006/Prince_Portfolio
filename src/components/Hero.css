@@ -1,0 +1,115 @@
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  color: var(--neon-cyan);
+  letter-spacing: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+}
+
+.hero-title {
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 900;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #ffffff 0%, var(--neon-cyan) 40%, var(--neon-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-tagline {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+.hero-cta {
+  margin-top: 1rem;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--neon-cyan);
+  background: transparent;
+  border: 2px solid var(--neon-cyan);
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer !important;
+}
+
+.hero-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--neon-cyan);
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.hero-cta:hover {
+  color: var(--bg);
+  box-shadow: 0 0 20px var(--neon-cyan);
+}
+
+.hero-cta:hover::before {
+  left: 0;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0.7;
+}
+
+.scroll-indicator span {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: var(--neon-purple);
+}
+
+.scroll-track {
+  width: 2px;
+  height: 60px;
+  background: rgba(191, 0, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: var(--neon-cyan);
+  box-shadow: 0 0 10px var(--neon-cyan);
+}

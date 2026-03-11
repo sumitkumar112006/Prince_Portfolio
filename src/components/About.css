@@ -1,0 +1,122 @@
+.about-section {
+  position: relative;
+  z-index: 2;
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 3rem;
+  background: linear-gradient(90deg, #fff, var(--neon-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+.card-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  perspective: 1000px; /* needed for the 3D flip effect */
+  width: 100%;
+  max-width: 800px;
+}
+
+.about-card {
+  flex: 1;
+  padding: 3rem;
+  text-align: center;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.about-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(0, 245, 255, 0.2);
+}
+
+.card-icon {
+  font-size: 3.5rem;
+}
+
+.card-title {
+  color: var(--neon-cyan);
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+}
+
+.card-body {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.nav-arrow {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 245, 255, 0.2);
+  color: var(--neon-cyan);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer !important;
+}
+
+.nav-arrow:hover {
+  background: rgba(0, 245, 255, 0.1);
+  box-shadow: 0 0 15px var(--neon-cyan);
+  transform: scale(1.1);
+}
+
+.dot-indicators {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer !important;
+  transition: all 0.3s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.2);
+}
+
+.dot.active {
+  background: var(--neon-cyan);
+  box-shadow: 0 0 10px var(--neon-cyan);
+  transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+  .card-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .nav-arrow {
+    display: none; /* Hide side arrows on mobile, rely on dots/swipe */
+  }
+  
+  .about-card {
+    padding: 2rem;
+    min-height: 300px;
+  }
+}
