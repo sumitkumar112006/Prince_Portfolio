@@ -5,8 +5,17 @@ const GalaxyCanvas = () => {
   const mountRef = useRef(null);
 
   useEffect(() => {
-    // 1. WebGLRenderer inside ref
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    let animationFrameId;
+    let renderer;
+
+    try {
+      // Keep the rest of the portfolio usable if WebGL cannot start.
+      renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    } catch (error) {
+      console.error('Galaxy background failed to initialize:', error);
+      return undefined;
+    }
+
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     if (mountRef.current) {
@@ -231,7 +240,7 @@ const GalaxyCanvas = () => {
     const clock = new THREE.Clock();
 
     const animate = () => {
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
       const elapsedTime = clock.getElapsedTime();
 
       // Stars rotation & twinkle
@@ -265,7 +274,10 @@ const GalaxyCanvas = () => {
     return () => {
       window.removeEventListener('mousemove', onDocumentMouseMove);
       window.removeEventListener('resize', onWindowResize);
-      if (mountRef.current) {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+      if (mountRef.current && mountRef.current.contains(renderer.domElement)) {
         mountRef.current.removeChild(renderer.domElement);
       }
       scene.clear();
